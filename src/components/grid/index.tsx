@@ -7,7 +7,7 @@ const Board = () => {
   const { grid, revealCell, flagCell } = useMineSweeperContext();
 
   return (
-    <div className="grid grid-cols-[repeat(10,64px)] gap-1">
+    <div className="grid grid-cols-[repeat(10,64px)] gap-1 border-red-600">
       {grid.map((row, rowIndex) =>
         row.map((cell, columnIndex) => (
           <Cell

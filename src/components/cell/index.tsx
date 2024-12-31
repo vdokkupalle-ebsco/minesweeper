@@ -12,6 +12,25 @@ const Cell: React.FC<CellProps> = ({ cell, onReveal, onFlag }) => {
     onFlag();
   };
 
+  const renderCount = () => {
+    let color = "text-black";
+    if (cell.adjacentBombs === 1) {
+      color = "text-blue-500";
+    }
+    if (cell.adjacentBombs === 2) {
+      color = "text-green-500";
+    }
+    if (cell.adjacentBombs >= 3) {
+      color = "text-red-500";
+    }
+
+    return (
+      <span className={`text-3xl font-bold ${color}`}>
+        {cell.adjacentBombs}
+      </span>
+    );
+  };
+
   return (
     <div
       className={`w-16 h-16 border border-gray-500 flex items-center justify-center text-sm cursor-pointer ${
@@ -26,7 +45,7 @@ const Cell: React.FC<CellProps> = ({ cell, onReveal, onFlag }) => {
       {cell.isRevealed &&
         !cell.isBomb &&
         cell.adjacentBombs > 0 &&
-        cell.adjacentBombs}
+        renderCount()}
       {!cell.isRevealed && cell.isFlagged && "🚩"}
     </div>
   );
